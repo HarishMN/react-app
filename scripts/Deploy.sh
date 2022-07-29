@@ -14,19 +14,19 @@ fi
 
 echo "Making project directory"
 
-timeout 100 ssh -i ~/.Downloads/$KEY ubuntu@$SERVER "mkdir -p /var/www/html/$SERVER"
+timeout 100 ssh -i ~/Downloads/$KEY ubuntu@$SERVER "mkdir -p /var/www/jenkins-react-app/$SERVER"
 
 echo "Successfully created project directory"
 
 echo "Copying files to remote server"
 
-timeout 100 scp -i ~/.Downloads/$KEY -r build/* ubuntu@$SERVER:/var/www/html/$SERVER
+timeout 100 scp -i ~/Downloads/$KEY -r build/* ubuntu@$SERVER:/var/www/jenkins-react-app/$SERVER
 
 echo "Copyed files to remote server"
 
 echo "Configuring nginx server"
 
-timeout 200 ssh -t -i ~/.keys/$KEY ubuntu@$SERVER <<EOF
+timeout 200 ssh -t -i ~/Downloads/$KEY ubuntu@$SERVER <<EOF
 sudo touch /etc/nginx/sites-available/$SERVER
 sudo touch /var/log/nginx/$SERVER.access.log
 sudo touch /var/log/nginx/$SERVER.error.log

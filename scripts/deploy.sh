@@ -36,7 +36,7 @@ access_log      /var/log/nginx/$SERVER.access.log;
 error_log       /var/log/nginx/$SERVER.access.error.log;
 
 server {
-	listen			80;
+	listen			3001;
 	server_name		$SERVER;
 	root			/var/www/jenkins-react-app/$SERVER;
 	index			index.html index.htm;

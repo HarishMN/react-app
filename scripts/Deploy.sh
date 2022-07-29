@@ -38,7 +38,7 @@ error_log       /var/log/nginx/$SERVER.access.error.log;
 server {
 	listen			80;
 	server_name		$SERVER;
-	root			/var/www/html/$SERVER;
+	root			/var/www/jenkins-react-app/$SERVER;
 	index			index.html index.htm;
     location / {
 		try_files \$uri /index.html = 404;

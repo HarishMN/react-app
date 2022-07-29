@@ -13,19 +13,19 @@ fi
 
 echo "Making project directory"
 
-timeout 100 ssh -i ~/butterjam.pem ubuntu@52.66.45.141 "mkdir -p /var/www/html/$SERVER"
+timeout 100 ssh -i ~/$KEY ubuntu@52.66.45.141 "mkdir -p /var/www/html/$SERVER"
 
 echo "Successfully created project directory"
 
 echo "Copying files to remote server"
 
-timeout 100 scp -i ~/butterjam.pem -r build/* ubuntu@52.66.45.141:/var/www/html/$SERVER
+timeout 100 scp -i ~/$KEY -r build/* ubuntu@52.66.45.141:/var/www/html/$SERVER
 
 echo "Copyed files to remote server"
 
 echo "Configuring nginx server"
 
-timeout 200 ssh -t -i ~/butterjam.pem ubuntu@52.66.45.141 <<EOF
+timeout 200 ssh -t -i ~/$KEY ubuntu@52.66.45.141 <<EOF
 sudo touch /etc/nginx/sites-available/$SERVER
 sudo touch /var/log/nginx/$SERVER.access.log
 sudo touch /var/log/nginx/$SERVER.error.log

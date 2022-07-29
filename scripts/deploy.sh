@@ -3,8 +3,8 @@
 
 if [[ $2 -eq 1 ]]
 then
-    SERVER=15.206.91.40
-    KEY="harishnew.pem"
+    SERVER=52.66.45.141
+    KEY="butterjam.pem"
 else
     SERVER=3.110.148.251
     KEY="ubuntuking.pem"
@@ -14,13 +14,13 @@ fi
 
 echo "Making project directory"
 
-timeout 100 ssh -i $KEY ubuntu@$SERVER "mkdir -p /var/www/jenkins-react-app/$SERVER"
+timeout 100 ssh -i $KEY ubuntu@$SERVER "mkdir -p /var/www/html/$SERVER"
 
 echo "Successfully created project directory"
 
 echo "Copying files to remote server"
 
-timeout 100 scp -i $KEY -r build/* ubuntu@$SERVER:/var/www/jenkins-react-app/$SERVER
+timeout 100 scp -i $KEY -r build/* ubuntu@$SERVER:/var/www/html/$SERVER
 
 echo "Copyed files to remote server"
 
@@ -38,7 +38,7 @@ error_log       /var/log/nginx/$SERVER.access.error.log;
 server {
 	listen			3001;
 	server_name		$SERVER;
-	root			/var/www/jenkins-react-app/$SERVER;
+	root			/var/www/html/$SERVER;
 	index			index.html index.htm;
     location / {
 		try_files \$uri /index.html = 404;

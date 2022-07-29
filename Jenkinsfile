@@ -7,11 +7,17 @@ pipeline {
                 sh "npm run build"
             }
         }
-        stage("Deploy") {
-            steps {
-                sh "rm -rf /var/www/jenkins-react-app"
-                sh "cp -r ${WORKSPACE}/build/ /var/www/jenkins-react-app/"
-            }
+        stage("deploy"){
+            input{
+                message "Ready to deploy"
+                ok "Yes"
+                parameters{
+                    string(name: "SERVER", defaultValue: "server 1")
+                    }
+                }
+            steps{
+                sh './scripts/deploy.sh ${SERVER}'
+                }
         }
     }
 }
